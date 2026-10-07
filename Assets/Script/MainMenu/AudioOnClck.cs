@@ -19,7 +19,7 @@ public class AudioOnClck : MonoBehaviour
         Btn.onClick.RemoveAllListeners();
     }
 
-    private void OnButtonStartClick()
+    public void OnButtonStartClick()
     {
         ClickSound.Play();
     }

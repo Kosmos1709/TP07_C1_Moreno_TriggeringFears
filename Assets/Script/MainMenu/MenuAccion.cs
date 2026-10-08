@@ -37,6 +37,7 @@ public class MenuAccion : MonoBehaviour
 
     private void OnButtonStartClick()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Gameplay");
     }
     private void OnButtonVolumeClick()

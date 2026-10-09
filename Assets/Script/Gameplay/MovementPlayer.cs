@@ -54,6 +54,7 @@ public class MovementPlayer : MonoBehaviour
             if (InFloor == true)
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
             }
         }
 

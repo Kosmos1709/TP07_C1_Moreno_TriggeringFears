@@ -17,6 +17,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private KeyCode jump = KeyCode.Space;
 
     [SerializeField] private Bullets bulletPrefab;
+    [SerializeField] private DeadPlayer deadplayer;
 
     void Start()
     {
@@ -38,6 +39,9 @@ public class MovementPlayer : MonoBehaviour
     }
     void Update()
     {
+        if (deadplayer.isDead == false)
+        {
+            
         if (Input.GetKey(right)||Input.GetKey(KeyCode.RightArrow))
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
@@ -75,6 +79,8 @@ public class MovementPlayer : MonoBehaviour
         {
             animator.SetFloat("Movement", 0f);
         }
+        }
+
     }
-    
+
 }

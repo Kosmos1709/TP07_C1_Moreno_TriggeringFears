@@ -8,13 +8,30 @@ public class Bullets : MonoBehaviour
     [SerializeField] private float time = 0f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private AudioSource ShootSound;
-    /// <summary>
-    /// agrega el sonido de disparo al disparar la bala y meterlo al audio mixer
-    /// </summary>
+    [SerializeField] private AudioSource Hitsound;
+
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            collision.gameObject.GetComponent<DeadEnemy>().TakeDamage(damage);
+            Hitsound.Play();
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
     }
     private void Update()
     {

@@ -3,23 +3,26 @@ using UnityEngine;
 public class DeadEnemy : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] public float health = 2f;
+    [SerializeField] public int health = 2;
     [SerializeField] private float damage = 1f;
     [SerializeField] public bool isDead = false;
     [SerializeField] private AudioSource deadSound;
     [SerializeField] public float countDown = 1f;
+    [SerializeField] private ParticleSystem deathEffect;
     void Awake()
     {
         isDead = false;
-        health = 2f;
+        health = 2;
         animator = GetComponent<Animator>();
         animator.SetBool("Dead", false);
+        deathEffect = GetComponentInChildren<ParticleSystem>();
+        deathEffect.Stop();
     }
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0f)
+        health -= (int)damage;
+        if (health <= 0)
         {
             Die();
         }
@@ -28,6 +31,7 @@ public class DeadEnemy : MonoBehaviour
     {
         countDown = 1f;
         animator.SetBool("Dead", true);
+        deathEffect.Play(); 
         deadSound.Play();
 
     }

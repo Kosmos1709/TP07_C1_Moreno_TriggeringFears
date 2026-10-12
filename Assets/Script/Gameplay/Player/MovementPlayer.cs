@@ -10,6 +10,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform transformbullet;
+    [SerializeField] private AudioSource jumpsound;
 
 
     [SerializeField] private KeyCode right = KeyCode.D;
@@ -58,7 +59,7 @@ public class MovementPlayer : MonoBehaviour
             if (InFloor == true)
             {
                 rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
+                jumpsound.Play();
             }
         }
 

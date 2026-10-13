@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class DeadPlayer : MonoBehaviour
 {
+    [Header("Components player")]
     [SerializeField] private GameObject weapon;
-    [SerializeField] private Rigidbody2D rb ;
     [SerializeField] private Animator animator;
-    [SerializeField] public bool isDead;
     [SerializeField] private AudioSource audioLose;
+
+    [Header("Player var")]
+    [SerializeField] public bool isDead;
     [SerializeField] private bool SoundPlaying = false;
 
+    [Header("Panels")]
     [SerializeField] private GameObject losePanel;
-    /// <summary>
-    /// crear un panel de derrota para ponerlo cuando se quede sin vida 
-    /// y poner un boton de reiniciar nivel y otro de volver al menu principal
-    /// </summary>
-    [SerializeField] public int health = 3;
+  
+    [Header("Pickeable 1 more life")]
+    [SerializeField] private AudioSource PickeableSound;
 
+   
+    [SerializeField] public int health = 3;
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         health = 3;
         SoundPlaying = false;
@@ -30,6 +32,7 @@ public class DeadPlayer : MonoBehaviour
             health--;
             transform.position = new Vector3(-4.5f, -1.5f, 0);
         }
+       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -38,6 +41,12 @@ public class DeadPlayer : MonoBehaviour
             health--;
             transform.position = new Vector3(-4.5f, -1.5f, 0);
         }
+    }
+   
+
+    public void PickeableSoundPlay()
+    {
+        PickeableSound.Play();
     }
     public void Update()
     {

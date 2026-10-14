@@ -5,6 +5,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private bool InFloor = false;
+    [SerializeField] public float CDSpeed;
 
 
     [SerializeField] private Animator animator;
@@ -38,8 +39,26 @@ public class MovementPlayer : MonoBehaviour
             InFloor = false;
         }
     }
+
+    public void MoreSpeedOn()
+    {
+        CDSpeed= 10f;
+
+    }
     void Update()
     {
+        //////// esto es para el buff de velocidad extra
+        CDSpeed -= Time.deltaTime;
+        if (CDSpeed<=0)
+        {
+            CDSpeed = 0f;
+            speed = 5f;
+        }
+        if (CDSpeed > 0)
+        {
+            speed = 10f;
+        }
+        ////// esto es el movimineeto y la condicional para saber si esta muerto para que no se mueva
         if (deadplayer.isDead == false)
         {
             

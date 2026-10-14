@@ -39,7 +39,16 @@ public class DeadPlayer : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             health--;
-            transform.position = new Vector3(-4.5f, -1.5f, 0);
+            float retroceso = 1f;
+
+            if (collision.transform.position.x > transform.position.x)
+            {
+                transform.position += Vector3.left * retroceso;
+            }
+            else
+            {
+                transform.position += Vector3.right * retroceso;
+            }
         }
     }
    
@@ -59,6 +68,7 @@ public class DeadPlayer : MonoBehaviour
         if (health <= 0 && !SoundPlaying)
         {
             health = 0;
+            transform.position = new Vector3(-4.5f, -1.5f, 0);
             weapon.SetActive(false);
             losePanel.SetActive(true);
             animator.SetBool("Dead", true);

@@ -7,6 +7,6 @@ public class LifeCountUI : MonoBehaviour
 
     void Update()
     {
-        lifeCountText.text = "x" + deadplayer.health.ToString("00"); 
+        lifeCountText.text = "x " + deadplayer.health.ToString("00"); 
     }
 }

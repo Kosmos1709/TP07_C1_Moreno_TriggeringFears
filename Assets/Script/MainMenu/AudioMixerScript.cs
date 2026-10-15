@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class AudioMixerScript : MonoBehaviour
 {
     [SerializeField] private AudioMixer audiomixer;
-
+    [SerializeField] private VolumenValues volumenValues;
 
     [SerializeField] private Slider VMaster;
     [SerializeField] private Slider VBackground;
@@ -32,7 +32,10 @@ public class AudioMixerScript : MonoBehaviour
     }
     void Start()
     {
-
+        VMaster.value = volumenValues.MasterVolumeobject;
+        VBackground.value = volumenValues.BackgroundVolumeobject;
+        VSfx.value = volumenValues.SFXVolumeobject;
+        VUi.value = volumenValues.UIVolumeobject;
     }
 
 
@@ -41,22 +44,23 @@ public class AudioMixerScript : MonoBehaviour
     private void SliderMaster(float value)
     {
         audiomixer.SetFloat("MasterParameter", value);
-
+        volumenValues.MasterVolumeobject = value;
     }
     private void SliderBackground(float value)
     {
         audiomixer.SetFloat("BackGroundParameter", value);
+        volumenValues.BackgroundVolumeobject = value;
 
     }
     private void SliderSFX(float value)
     {
         audiomixer.SetFloat("SFXParameter", value);
-
+        volumenValues.SFXVolumeobject = value;
     }
     private void SliderUI(float value)
     {
         audiomixer.SetFloat("UIParameter", value);
-
+        volumenValues.UIVolumeobject = value;
     }
 
 }

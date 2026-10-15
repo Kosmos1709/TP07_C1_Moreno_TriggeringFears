@@ -700,6 +700,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1760260819589051491, guid: a2c2ab170320d7f4db814e1799d16e90, type: 3}
+      propertyPath: volumenValues
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ef750bc4ac10084985e1761805db967, type: 2}
     - target: {fileID: 7261125779910153476, guid: a2c2ab170320d7f4db814e1799d16e90, type: 3}
       propertyPath: m_Name
       value: Canvas Menu

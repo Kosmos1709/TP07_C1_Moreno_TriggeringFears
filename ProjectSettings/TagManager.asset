@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - MoreLife
+  - Enemy
   layers:
   - Default
   - TransparentFX

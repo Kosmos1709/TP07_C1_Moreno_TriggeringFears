@@ -3,6 +3,7 @@ using UnityEngine;
 public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float backspeed;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private bool InFloor = false;
     [SerializeField] public float CDSpeed;
@@ -31,6 +32,7 @@ public class MovementPlayer : MonoBehaviour
         {
             InFloor = true;
         }
+        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {

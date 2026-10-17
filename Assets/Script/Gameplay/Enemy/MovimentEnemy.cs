@@ -7,11 +7,9 @@ public class MovimentEnemy : MonoBehaviour
     private DeadEnemy deadEnemy;
 
     [SerializeField] private Animator animator;
-    private Rigidbody2D rb;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         deadEnemy = GetComponent<DeadEnemy>();
     }
 
@@ -31,7 +29,13 @@ public class MovimentEnemy : MonoBehaviour
             scale.x *= -1;
             transform.localScale = scale;
         }
-
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            speed *= -1;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
+        }
     }
     void Update()
     {

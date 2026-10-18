@@ -24,6 +24,7 @@ public class DeadPlayer : MonoBehaviour
         animator = GetComponent<Animator>();
         health = 3;
         SoundPlaying = false;
+        isDead = false;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

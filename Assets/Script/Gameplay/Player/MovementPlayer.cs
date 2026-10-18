@@ -2,29 +2,37 @@ using UnityEngine;
 
 public class MovementPlayer : MonoBehaviour
 {
+    [Header("Variables")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float backspeed;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private bool InFloor = false;
     [SerializeField] public float CDSpeed;
+    [SerializeField] private bool Goal = false;
 
-
+    [Header("Components")]
     [SerializeField] private Animator animator;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform transformbullet;
     [SerializeField] private AudioSource jumpsound;
+    [SerializeField] private AudioSource VictorySound;
 
-
+    [Header("Movement")]
     [SerializeField] private KeyCode right = KeyCode.D;
     [SerializeField] private KeyCode left = KeyCode.A;
     [SerializeField] private KeyCode jump = KeyCode.Space;
 
+
     [SerializeField] private Bullets bulletPrefab;
     [SerializeField] private DeadPlayer deadplayer;
+
+    [Header("Panels Win")]
+    [SerializeField] private GameObject WinPanel;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        Goal = false;
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -32,7 +40,13 @@ public class MovementPlayer : MonoBehaviour
         {
             InFloor = true;
         }
-        
+        if (collision.gameObject.CompareTag("Goal"))
+        {
+            Time.timeScale = 0f;
+            WinPanel.SetActive(true);
+            Goal = true;
+            VictorySound.Play();
+        }
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
@@ -61,7 +75,7 @@ public class MovementPlayer : MonoBehaviour
             speed = 10f;
         }
         ////// esto es el movimineeto y la condicional para saber si esta muerto para que no se mueva
-        if (deadplayer.isDead == false)
+        if (deadplayer.isDead == false && !Goal)
         {
             
         if (Input.GetKey(right)||Input.GetKey(KeyCode.RightArrow))

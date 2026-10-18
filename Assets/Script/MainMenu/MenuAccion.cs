@@ -1,4 +1,3 @@
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -54,7 +53,7 @@ public class MenuAccion : MonoBehaviour
     private void OnButtonHTPClick()
     {
         Debug.Log("Clickbutton HTP");
-        EditorSceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
